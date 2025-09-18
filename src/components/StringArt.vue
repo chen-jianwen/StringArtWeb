@@ -17,13 +17,19 @@
     </div>
     <div class="slider-row">
       <label for="lineWidthSlider">线条粗细：</label>
-  <input id="lineWidthSlider" type="range" min="0.01" max="1" step="0.05" :value="lineWidth.value" @input="onLineWidthChange" />
+      <input id="lineWidthSlider" type="range" min="0.01" max="1" step="0.02" :value="lineWidth.value" @input="onLineWidthChange" />
       <span>{{ lineWidth.value }} px</span>
+      <label for="lineColorPicker" style="margin-left:16px;">线条颜色：</label>
+      <input id="lineColorPicker" type="color" :value="lineColor.value" @input="onLineColorChange" />
     </div>
   </div>
 </template>
 
 <script setup>
+function onLineColorChange(e) {
+  lineColor.value = e.target.value
+  draw()
+}
 function onLineWidthChange(e) {
   lineWidth.value = Number(e.target.value)
   draw()
@@ -196,7 +202,15 @@ function prevStep() {
 speakStep(currentStep.value)
 
 onMounted(() => {
-  draw();
+  // 默认加载 fangao.json
+  fetch('src/assets/fangao.json')
+    .then(res => res.json())
+    .then(data => {
+      applyJsonData(data)
+    })
+    .catch(() => {
+      draw()
+    })
 });
 
 watch(currentStep, () => {
@@ -261,21 +275,21 @@ input[type="range"] {
 /* PC和移动端自适应样式 */
 .string-art-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
-}
-.controls {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-button {
-  padding: 6px 16px;
-  font-size: 16px;
+  padding: 32px 24px;
+    .string-art-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 24px;
+    }
   border-radius: 4px;
   border: none;
   background: #e67e22;
