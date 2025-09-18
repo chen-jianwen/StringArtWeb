@@ -1,9 +1,20 @@
 <script setup>
 import StringArt from './components/StringArt.vue'
+import Login from './components/Login.vue'
+import { ref } from 'vue'
+
+const isLoggedIn = ref(false)
+
+function handleLoginSuccess() {
+  isLoggedIn.value = true
+}
 </script>
 
 <template>
-  <StringArt />
+  <div>
+    <Login v-if="!isLoggedIn" @login-success="handleLoginSuccess" />
+    <StringArt v-else />
+  </div>
 </template>
 
 <style scoped>
