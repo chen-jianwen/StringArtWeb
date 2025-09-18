@@ -203,7 +203,7 @@ speakStep(currentStep.value)
 
 onMounted(() => {
   // 默认加载 fangao.json
-  fetch('src/assets/fangao.json')
+  fetch('fangao.json')
     .then(res => res.json())
     .then(data => {
       applyJsonData(data)
