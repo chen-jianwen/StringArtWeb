@@ -17,5 +17,5 @@ set SERVER_PATH=/var/www/html/StringArtWeb
 
 scp -P %SERVER_PORT% -r dist\* %SERVER_USER%@%SERVER_IP%:%SERVER_PATH%
 
-echo 部署完成！
+echo Deploy Done！
 pause
