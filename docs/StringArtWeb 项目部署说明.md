@@ -26,7 +26,7 @@ npm run build
 ```
 构建后的静态文件会生成在 `dist` 文件夹。
 
-### 5. 自动上传到服务器
+### 5. 自动上传到腾讯云服务器
 可使用如下批处理脚本（需安装 scp 工具）：
 
 ```bat
@@ -83,11 +83,11 @@ pause
    npm run deploy
    ```
 3. 在 GitHub 仓库设置中，将 Pages 发布源设置为 `gh-pages` 分支。
-4. 稍后可通过 `https://你的用户名.github.io/你的仓库名/` 访问你的项目。
+4. 稍后可通过 `https://github.com/chen-jianwen/StringArtWeb.git` 访问你的项目。
 
 ---
 
-## 二、服务端部署流程
+## 二、云服务器服务端部署流程
 
 ### 1. 安装 Nginx（Ubuntu 示例）
 ```bash
