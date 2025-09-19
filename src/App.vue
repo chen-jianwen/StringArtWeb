@@ -1,20 +1,27 @@
 <script setup>
-import StringArt from './components/StringArt.vue'
+import Main from './components/Main.vue'
 import Login from './components/Login.vue'
+import Gallery from './components/Gallery.vue'
+import Admin from './components/Admin.vue'
 import { ref } from 'vue'
 
-const isLoggedIn = ref(false)
+const loginType = ref('none') // 'none' | 'user' | 'phone' | 'guest' | 'admin'
 
-function handleLoginSuccess() {
-  isLoggedIn.value = true
+function handleLoginSuccess(payload) {
+  if (payload && payload.type === 'guest') {
+    loginType.value = 'guest'
+  } else {
+    loginType.value = 'user'
+  }
+}
+
+function handleRequestAdmin() {
+  loginType.value = 'admin'
 }
 </script>
 
 <template>
-  <div>
-    <Login v-if="!isLoggedIn" @login-success="handleLoginSuccess" />
-    <StringArt v-else />
-  </div>
+  <router-view />
 </template>
 
 <style scoped>
